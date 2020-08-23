@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include
+		resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<property scope="context" name="serviceName" value="BiddingSystem"/>
+	<property scope="context" name="log.fileExtension" value="log" />
+	<property name="LOG_PATH" value="./logs/${serviceName}.log"/>​
+	<property scope="context" name="log.directory" value="./logs" />
+	<property scope="context" name="log.fileName" value="${serviceName}" />​
+	
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				[%d{yyyy-MM-dd HH:mm:ss.SSS,UTC}] [%d{yyyy-MM-dd HH:mm:ss.SSS,IST}] [${serviceName}] [${HOSTNAME}] %green([%thread]) %highlight(%-5level) ::[%X{tenantContext}] %logger{36} @%method:%line - %highlight(%msg%n)
+			</Pattern>
+		</layout>
+	</appender>
+
+	<appender name="ROLLING"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${log.directory}/${log.fileName}-%d{yyyy-MM-dd}.%i.${log.fileExtension}
+			</fileNamePattern>
+			<maxFileSize>10MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>1GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>
+				[%d{yyyy-MM-dd HH:mm:ss.SSS,UTC}] [%d{yyyy-MM-dd HH:mm:ss.SSS,IST}] [${serviceName}] [${HOSTNAME}] %green([%thread]) %highlight(%-5level) ::[%X{tenantContext}] %logger{36} @%method:%line - %highlight(%msg%n)
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<logger name="com.akshay" level="debug" additivity="false">
+		<appender-ref ref="ROLLING" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<root level="info">
+		<appender-ref ref="ROLLING" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
