@@ -41,3 +41,6 @@ CREATE TABLE tb_auction_bid (
   n_modified_by bigint(32) DEFAULT NULL,
   CHECK (s_status='STATUS_NOT_CHECKED' OR s_status='ACCEPTED' OR s_status='REJECTED')
 );
+
+INSERT INTO tb_auction_bid (n_item_code,d_bid_amount,n_user_id,s_status,n_version,n_created_by) VALUES
+(6, 2500, 691, 'ACCEPTED',6,691);

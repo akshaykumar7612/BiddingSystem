@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerMapping;
 
@@ -85,7 +86,11 @@ public class ContextFilter implements Filter {
 						OutputResponseDto outputResponseDto = new OutputResponseDto(false, null,
 								messages.getStastusCode("bs.failure.auction.placeBidAuthFailed.message.id"),
 								messages.get("bs.failure.auction.placeBidAuthFailed.message"),"9999");
-						logger.error("User Authentication Failed" + messages.get("bs.failure.auction.placebid.message"));
+						logger.error("User Id Not Found Authentication Failed " + messages.get("bs.failure.auction.placeBidAuthFailed.message"));
+						String sAppCode = outputResponseDto.getStatusCode().toString();
+						String sCode = sAppCode.split("-")[1].toString();
+						Integer st = Integer.parseInt(sCode);
+						httpResponse.setStatus(st);
 						httpResponse.getWriter().write(gson.toJson(outputResponseDto));
 						return;
 					}
@@ -93,7 +98,11 @@ public class ContextFilter implements Filter {
 					OutputResponseDto outputResponseDto = new OutputResponseDto(false, null,
 							messages.getStastusCode("bs.failure.auction.placeBidAuthFailed.message.id"),
 							messages.get("bs.failure.auction.placeBidAuthFailed.message"),"9999");
-					logger.error("User Authentication Failed" + messages.get("bs.failure.auction.placebid.message"));
+					logger.error("Context Not Found Authentication Failed " + messages.get("bs.failure.auction.placeBidAuthFailed.message"));
+					String sAppCode = outputResponseDto.getStatusCode().toString();
+					String sCode = sAppCode.split("-")[1].toString();
+					Integer st = Integer.parseInt(sCode);
+					httpResponse.setStatus(st);
 					httpResponse.getWriter().write(gson.toJson(outputResponseDto));
 					return;
 				}

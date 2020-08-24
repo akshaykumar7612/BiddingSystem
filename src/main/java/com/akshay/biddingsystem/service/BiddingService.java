@@ -84,17 +84,17 @@ public class BiddingService implements IBiddingService{
 						messages.getStastusCode("bs.failure.auction.placeBidDataExists.message.id"),
 						messages.get("bs.failure.auction.placeBidDataExists.message"),context.getTraceId());
 			} else {
-				TbAuctionBid tbAuctionBid = new TbAuctionBid();
-				tbAuctionBid.setnItemCode(nItemCode);
-				tbAuctionBid.setdBidAmount(dBidAmount);
-				tbAuctionBid.setnUserId(context.getUserId());
-				tbAuctionBid.setnCreatedBy(context.getUserId());
-				tbAuctionBid.setnVersion(nVersion);
-				logger.info("Bid Details Trying To Save in DB "+tbAuctionBid);
-				iAuctionBidRepo.save(tbAuctionBid);
-				logger.info("Bid Details Saved");
-				
 				if(tbAuctionItem.getsStatus()!=null && tbAuctionItem.getsStatus().equals(Constant.AUCTION_STATUS_RUNNING)) {
+					TbAuctionBid tbAuctionBid = new TbAuctionBid();
+					tbAuctionBid.setnItemCode(nItemCode);
+					tbAuctionBid.setdBidAmount(dBidAmount);
+					tbAuctionBid.setnUserId(context.getUserId());
+					tbAuctionBid.setnCreatedBy(context.getUserId());
+					tbAuctionBid.setnVersion(nVersion);
+					logger.info("Bid Details Trying To Save in DB "+tbAuctionBid);
+					iAuctionBidRepo.save(tbAuctionBid);
+					logger.info("Bid Details Saved");
+		
 					if(tbAuctionItem.getnVersion()!=null && tbAuctionItem.getnVersion().equals(nVersion)) {
 						if(dBidAmount>=(tbAuctionItem.getdHighestBidPrice()+tbAuctionItem.getdStepRate())) {
 							return bidService.bidAccepted(nVersion, dBidAmount, tbAuctionBid, tbAuctionItem);

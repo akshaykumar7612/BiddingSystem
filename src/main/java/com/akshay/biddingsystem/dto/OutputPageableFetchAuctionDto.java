@@ -15,7 +15,7 @@ public class OutputPageableFetchAuctionDto {
     private boolean isSorted = false;
     
     public OutputPageableFetchAuctionDto(List<OutputFetchAuctionDto> lOutputFetchAuctionDto, int nTotalPages,
-			int nTotalElements, int nPageSize, int nPageNumber, boolean isFirst, boolean isLast, boolean isSorted) {
+    		long nTotalElements, int nPageSize, int nPageNumber, boolean isFirst, boolean isLast, boolean isSorted) {
 		super();
 		this.lOutputFetchAuctionDto = lOutputFetchAuctionDto;
 		this.nTotalPages = nTotalPages;
