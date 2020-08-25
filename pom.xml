@@ -39,6 +39,8 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- Start Simple Json and Gson Dependencies -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
@@ -49,10 +51,20 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>
+		<!-- End Simple Json and Gson Dependencies -->
+		
+		<!-- Start Dto Validation Related Dependencies -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 		</dependency>
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<!-- End Dto Validation Related Dependencies -->
+		
+		<!-- Start Testing Related Dependencies -->
 		<dependency>
             <groupId>net.minidev</groupId>
             <artifactId>asm</artifactId>
@@ -65,10 +77,16 @@
             <version>2.2.1</version>
             <scope>test</scope>
         </dependency>
-		<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-starter-validation</artifactId>
+        <!-- End Testing Related Dependencies -->
+        
+        <!-- Start Documentation Related Dependencies -->
+        <dependency>
+    		<groupId>org.springdoc</groupId>
+    		<artifactId>springdoc-openapi-ui</artifactId>
+    		<version>1.4.4</version>
 		</dependency>
+        <!-- End Documentation Related Dependencies -->
+        
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

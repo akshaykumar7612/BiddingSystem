@@ -291,7 +291,7 @@ class BidControllerTests {
 		outputResponseDto.setSuccess(true);
 		outputResponseDto.setData(outputFetchAuctionDto);
 		outputResponseDto.setMessage("Bid is Accepted");
-		outputResponseDto.setStatusCode("bs-200-2009");
+		outputResponseDto.setStatusCode("bs-201-2009");
 		outputResponseDto.setTraceId("9999");
 		
 		given(iBiddingService.placeAuctionsBid(nInputItemCode,nInputVersion,dInputBidAmount)).willReturn(outputResponseDto);
@@ -306,7 +306,7 @@ class BidControllerTests {
 		
 		
 		mockMvc.perform(requestBuilder)
-			   .andExpect(status().isOk())
+			   .andExpect(status().isCreated())
 			   .andExpect(content().contentType(sContentType))
 			   .andExpect(jsonPath("$.data.nItemCode").value(nInputItemCode))
 			   .andExpect(jsonPath("$.data.sStatus").value(sInputStatus))
@@ -561,7 +561,7 @@ class BidControllerTests {
 		outputResponseDto.setSuccess(true);
 		outputResponseDto.setData(outputFetchAuctionDto);
 		outputResponseDto.setMessage("Bid is Accepted");
-		outputResponseDto.setStatusCode("bs-200-2009");
+		outputResponseDto.setStatusCode("bs-201-2009");
 		outputResponseDto.setTraceId("9999");
 		
 		given(iBiddingService.placeAuctionsBid(nInputItemCode,nInputVersion,dInputBidAmount)).willReturn(outputResponseDto);
@@ -576,7 +576,7 @@ class BidControllerTests {
 		
 		
 		mockMvc.perform(requestBuilder)
-			   .andExpect(status().isOk())
+			   .andExpect(status().isCreated())
 			   .andExpect(content().contentType(sContentType))
 			   .andExpect(jsonPath("$.data.nItemCode").value(nInputItemCode))
 			   .andExpect(jsonPath("$.data.sStatus").value(sInputStatus))
